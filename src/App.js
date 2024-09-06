@@ -1,6 +1,6 @@
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom"
-import NotFound from './pages/notfound/index.js';
-import Home from './pages/home'
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import NotFound from "./pages/notfound/index.js";
+import Home from "./pages/home";
 
 function App() {
   return (
@@ -14,6 +14,3 @@ function App() {
 }
 
 export default App;
-
-
-
