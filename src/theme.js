@@ -14,8 +14,9 @@ const theme = createTheme({
       fontWeight: 600, // Semi-bold cho title2
     },
     h1: {
-      fontSize: "18px",
+      fontSize: "24px",
       fontWeight: 700, // Bold cho title1
+      color: "#1976d2",
     },
   },
   palette: {

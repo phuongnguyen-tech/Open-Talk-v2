@@ -13,22 +13,17 @@ const TruncatedTypography = styled(Typography)(({ theme }) => ({
   whiteSpace: "normal",
 }));
 
-export default function EventDescription({ description }) {
+export default function CustomDescription({ description }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div>
       {!isExpanded ? (
         <>
-          <TruncatedTypography
-            variant="body2"
-            color="textSecondary"
-            pr={2}
-            mb={2}
-          >
+          <TruncatedTypography variant="body2" color="textSecondary" pr={4}>
             {description}
           </TruncatedTypography>
-          {/* {description.split(" ").length > 50 && (
+          {description.split(" ").length > 50 && (
             <Button
               variant="text"
               sx={{ display: "flex", justifyItems: "end" }}
@@ -36,18 +31,14 @@ export default function EventDescription({ description }) {
             >
               Show more
             </Button>
-          )} */}
+          )}
         </>
       ) : (
         <>
           <Typography variant="body2" color="textSecondary" pr={2} mb={2}>
             {description}
           </Typography>
-          <Button
-            variant="text"
-            onClick={() => setIsExpanded(false)}
-            style={{ textTransform: "none" }}
-          >
+          <Button variant="text" onClick={() => setIsExpanded(false)}>
             Show less
           </Button>
         </>

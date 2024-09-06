@@ -88,12 +88,13 @@ export default function EventCreateForm({ onClose, ...other }) {
             </DialogTitle>
 
             <DialogContent
+              dividers
               sx={{
-                maxHeight: "600px", // Giới hạn chiều cao
-                overflowY: "auto", // Kích hoạt cuộn dọc
+                maxHeight: "480px",
+                overflowY: "auto",
               }}
             >
-              <Box display="flex" alignItems="center" gap={2} marginTop={2}>
+              <Box display="flex" alignItems="center" gap={2}>
                 <Controller
                   name="topicSelection"
                   control={control}
@@ -127,7 +128,7 @@ export default function EventCreateForm({ onClose, ...other }) {
                       {...field}
                       label="Description *"
                       fullWidth
-                      sx={{ mt: 3 }}
+                      sx={{ mt: 2 }}
                       multiline
                       rows={4}
                     />

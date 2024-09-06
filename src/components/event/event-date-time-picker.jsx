@@ -153,8 +153,7 @@ const EventDateTimePicker = ({ field }) => {
           shouldDisableDate={shouldDisableDate}
           slotProps={{
             textField: {
-              variant: "outlined",
-              fullWidth: true,
+              variant: "contain",
             },
           }}
         />

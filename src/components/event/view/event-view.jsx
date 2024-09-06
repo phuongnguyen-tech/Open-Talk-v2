@@ -12,7 +12,6 @@ import EditIcon from "@mui/icons-material/DriveFileRenameOutline";
 import EditEventForm from "./event-edit-form-test";
 import EventCreateForm from "./event-create-form-test";
 import useFormattedDateTime from "../../../hooks/use-formatted-date-time";
-import EventDescription from "../../../components/event-description";
 
 const mockEventData = {
   topic: "Quarterly Review Meeting",
@@ -59,7 +58,8 @@ export default function EventView() {
       maxWidth={800}
       maxHeight={400}
       mx="auto"
-      my={2}
+      mt={4}
+      mb={2}
       p={2}
       borderRadius={4}
       boxShadow={3}
@@ -70,10 +70,9 @@ export default function EventView() {
         spacing={2}
         alignItems="center"
         justifyContent="space-between"
+        marginBottom={2}
       >
-        <Typography variant="h5" fontWeight="bold">
-          Event Schedule
-        </Typography>
+        <Typography variant="h1">Event Schedule</Typography>
         <Button
           variant="contained"
           color="primary"
@@ -100,9 +99,9 @@ export default function EventView() {
 
 function EventCard({ onEdit }) {
   return (
-    <Stack direction="row" spacing={2} alignItems="flex-start">
-      <Box sx={{ width: 120, overflow: "hidden" }}>
-        <Typography style={{ whiteSpace: "pre-line" }}>
+    <Stack direction="row" spacing={2} alignItems="flex-start" marginBottom={1}>
+      <Box sx={{ width: 132, overflow: "hidden" }}>
+        <Typography style={{ whiteSpace: "pre-line" }} variant="body1">
           {useFormattedDateTime(mockEventData.date.start_time.timestamp)}
         </Typography>
       </Box>
@@ -110,15 +109,13 @@ function EventCard({ onEdit }) {
       <Box
         sx={{
           width: "100%",
-          mt: 2,
-          p: 2,
+          py: 1,
+          px: 3,
           border: 1,
-          borderRadius: 2,
-          maxHeight: "100%",
-          overflowY: "auto", // Enable vertical scrolling
+          borderRadius: 4,
         }}
       >
-        <Stack direction="row" justifyContent="space-between" mb={1}>
+        <Stack direction="row" justifyContent="space-between" height={32}>
           <Typography fontWeight="bold" variant="subtitle1">
             {mockEventData.topic}
           </Typography>
@@ -126,7 +123,9 @@ function EventCard({ onEdit }) {
             <EditIcon />
           </IconButton>
         </Stack>
-        <EventDescription description={mockEventData.description} />
+        <Typography variant="body2" color="textSecondary" marginBottom={1}>
+          Web,12/09/2024 5PM - 6PM
+        </Typography>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar sx={{ width: 24, height: 24, marginRight: 1 }} />

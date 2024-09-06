@@ -13,9 +13,29 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import LoupeIcon from "@mui/icons-material/Loupe";
 import logo from "../../../logo.svg";
 import TopicCreateForm from "../topic-create-form";
+import CustomDescription from "../../custom-description";
+
+const mockData = {
+  topic: "Quarterly Review Meeting",
+  description:
+    "Dự báo trong những ngày cuối tháng 8, miền Trung tiếp tục có nắng nóng gay gắt, từ đầu tháng 9 nắng nóng dịu dần. Khu vực đồng bằng Bắc Bộ, tỉnh Hoà Bình những ngày cuối tháng 8 cũng có nắng nóng. Tây Nguyên, Nam Bộ, Nam Trung Bộ mưa dông vào chiều tối và tối.Dự báo trong những ngày cuối tháng 8, miền Trung tiếp tục có nắng nóng gay gắt, từ đầu tháng 9 nắng nóng dịu dần. Khu vực đồng bằng Bắc Bộ, tỉnh Hoà Bình Dự báo trong những ngày cuối tháng 8, miền Trung tiếp tục có nắng nóng gay gắt, từ đầu tháng 9 nắng nóng dịu dần. Khu vực đồng bằng Bắc Bộ, tỉnh Hoà Bình",
+  attachment: null, // Assuming no file is attached
+  date: {
+    start_time: {
+      date: "2024-08-28",
+      timestamp: "1724835600",
+      timezone: "Asia/Ho_Chi_Minh",
+    },
+    end_time: {
+      date: "2024-08-28",
+      timestamp: "1724839200",
+      timezone: "Asia/Ho_Chi_Minh",
+    },
+  },
+  user: "Phuong Nguyen",
+};
 
 export default function TopicView({ userInfo }) {
-  const [topics, setTopics] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
 
   const handleClickOpen = () => {
@@ -41,10 +61,9 @@ export default function TopicView({ userInfo }) {
         spacing={2}
         alignItems="center"
         justifyContent="space-between"
+        marginBottom={2}
       >
-        <Typography variant="h5" fontWeight="bold">
-          Requested Topics {topics.length}
-        </Typography>
+        <Typography variant="h1">Requested Topics </Typography>
         <Button
           variant="contained"
           color="primary"
@@ -56,7 +75,7 @@ export default function TopicView({ userInfo }) {
       </Stack>
       {/* Truyền userInfo làm prop vào TopicCard */}
       {[...Array(2)].map((_, index) => (
-        <TopicCard key={index} userInfo={userInfo} topics={topics} />
+        <TopicCard key={index} userInfo={userInfo} />
       ))}
       <TopicCreateForm open={openDialog} onClose={handleClose} />
     </Box>
@@ -75,27 +94,35 @@ function TopicCard({ userInfo, topics }) {
   };
 
   return (
-    <Stack direction="row" spacing={2} alignItems="center">
+    <Stack direction="row" spacing={2} marginBottom={1}>
       <Stack
         textAlign="center"
         alignItems="center"
         justifyContent="center"
-        sx={{ marginRight: 4, Width: 120 }}
+        sx={{ width: 132 }}
       >
         <Avatar
           src={userInfo.avatar_url || logo}
           alt="User Avatar"
-          sx={{ width: 72, height: 72 }}
+          sx={{ width: 48, height: 48 }}
         />
-        <Typography variant="body2" fontWeight={600} mt={1}>
+        <Typography fontSize={12} fontWeight={600} mt={1}>
           {userInfo.name && userInfo.name.length > 0
-            ? `Welcome, ${userInfo.name}`
+            ? `${userInfo.name}`
             : "Demo account"}
         </Typography>
       </Stack>
 
-      <Box mt={2} p={2} border={1} borderRadius={2}>
-        <Stack direction="row" justifyContent="space-between">
+      <Box
+        sx={{
+          width: "100%",
+          py: 1,
+          px: 3,
+          border: 1,
+          borderRadius: 4,
+        }}
+      >
+        <Stack direction="row" justifyContent="space-between" height={32}>
           <Typography fontWeight="bold" variant="subtitle1">
             Apply AI in work
           </Typography>
@@ -103,12 +130,8 @@ function TopicCard({ userInfo, topics }) {
             <DeleteIcon color="error" />
           </IconButton>
         </Stack>
-        <Typography variant="body2" color="textSecondary" pr={2}>
-          Every user accessing OpenTalk has permission to vote up or down for
-          each requested topic once. Voting is done directly on the requested
-          topic list from homepage of OpenTalk.
-        </Typography>
-        <Stack direction="row" alignItems="center" spacing={1} mt={1}>
+        <CustomDescription description={mockData.description} />
+        <Stack direction="row" alignItems="center" spacing={1}>
           <IconButton
             color={selectedOption === "like" ? "primary" : "default"}
             onClick={handleLikeClick}

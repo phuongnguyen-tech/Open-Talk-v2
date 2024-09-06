@@ -89,7 +89,7 @@ const AddGuest = ({ field }) => {
         <Autocomplete
           multiple
           disablePortal
-          sx={{ mt: 3 }}
+          sx={{ mt: 2 }}
           options={[{ id: "all", name: "All" }, ...top100Guests]}
           getOptionLabel={(option) => option.name}
           isOptionEqualToValue={(option, value) => option.id === value.id}
